@@ -44,7 +44,7 @@ export default function App() {
       <div className='App'>
         <header>
           <div>
-            <Link to="/board-games">Board Games</Link>
+            <Link to="/">Board Games</Link>
             <Link to="/create">Create</Link>
           </div>
           <button onClick={handleLogout}>Log Out</button>
@@ -53,15 +53,35 @@ export default function App() {
         <main>
           <Switch>
             <Route exact path="/">
+              {
+                token
+                  ? <Redirect to="/"/>
+                  : <AuthPage setEmail={setEmail} setToken={setToken}/>
+              }
               {/* if there is a user, redirect to the board games list. Otherwise, render the auth page. Note that the AuthPage will need a function called setUser that can set the user state in App.js */}
             </Route>
             <Route exact path="/board-games">
+              {
+                token
+                  ? <Redirect to="ListPage"/>
+                  : <AuthPage setEmail={setEmail} setToken={setToken}/>
+              }
               {/* if there is a user, render the board games list. Otherwise, redirect to the home route/auth page */}
             </Route>
             <Route exact path="/board-games/:id">
+              {
+                token
+                  ? <Redirect to="/board-games/:id"/>
+                  : <AuthPage setEmail={setEmail} setToken={setToken}/>
+              }
               {/* if there is a user, render the detail page. Otherwise, redirect to the home route/auth page */}
             </Route>
             <Route exact path="/create">
+              {
+                token
+                  ? <Redirect to="/create"/>
+                  : <AuthPage setEmail={setEmail} setToken={setToken}/>
+              }
               {/* if there is a user, render the create page. Otherwise, redirect to the home route/auth page */}
             </Route>
           </Switch>
