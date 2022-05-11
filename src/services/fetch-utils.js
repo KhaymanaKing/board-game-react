@@ -1,8 +1,8 @@
 import { client, checkError } from './client';
 
 export function getUser() {
+  console.log(client);
   return client.auth.session();
-
 }
 
 // signs an new user in and puts an auth token in local storage in the browser
