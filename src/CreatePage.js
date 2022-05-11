@@ -1,9 +1,17 @@
 import { useState } from 'react';
 import { createGame } from './services/fetch-utils';
-
+import { useHistory } from 'react-router-dom';
 export default function CreatePage() {
   // you'll need the history hook from react-router-dom to do your redirecting in the handleSubmit
-
+  const history = useHistory();
+  const [gameForm, setGameForm] = useState ({
+    title: '',
+    genre: '',
+    designer: '',
+    description: '',
+    minPlayers: '',
+    maxPlayers: ''
+  });
   // here's the state you'll need:
     // title;
     // genre;
@@ -14,26 +22,32 @@ export default function CreatePage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    await createGame(gameForm);
     // create a game
-
+    history.push(gameForm);
     // use history.push to send the user to the list page
   }
 
   return (
     <div className='create'>
       {/* on submit, call your handleSubmit function */}
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2>Add board game</h2>
         <label>
             Title
           {/* on change, set the title in state */}
-          <input required name='title' />
+          <input required name='title' onChange={e => setGameForm ({ 
+            ...gameForm,
+            title: e.target.value
+          })} />
         </label>
         <label>
             Genre
           {/* on change, set the genre in state */}
-          <select required>
+          <select required onChange={e => setGameForm ({
+            ...gameForm,
+            genre: e.target.value
+          })}>
             <option>Tile-laying</option>
             <option>Economic</option>
             <option>War</option>
