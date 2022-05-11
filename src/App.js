@@ -6,6 +6,7 @@ import {
   NavLink,
   Route,
   Redirect,
+  Link,
 } from 'react-router-dom';
 import AuthPage from './AuthPage';
 import DetailPage from './DetailPage';
@@ -32,13 +33,21 @@ export default function App() {
 
   async function handleLogout() {
     // call the logout function
+    await logout();
     // clear the user in state
+    setEmail('');
+    setToken('');
   }
 
   return (
     <Router>
       <div className='App'>
         <header>
+          <div>
+            <Link to="/board-games">Board Games</Link>
+            <Link to="/create">Create</Link>
+          </div>
+          <button onClick={handleLogout}>Log Out</button>
           {/* if there is a user in state, render out a link to the board games list, the create page, and add a button to let the user logout */}
         </header>
         <main>
