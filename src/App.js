@@ -55,7 +55,7 @@ export default function App() {
             <Route exact path="/">
               {
                 token
-                  ? <Redirect to="/"/>
+                  ? <Redirect to="/ListPage"/>
                   : <AuthPage setEmail={setEmail} setToken={setToken}/>
               }
               {/* if there is a user, redirect to the board games list. Otherwise, render the auth page. Note that the AuthPage will need a function called setUser that can set the user state in App.js */}
