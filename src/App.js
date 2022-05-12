@@ -3,7 +3,6 @@ import { getUser } from './services/fetch-utils';
 import {
   BrowserRouter as Router,
   Switch,
-  NavLink,
   Route,
   Redirect,
   Link,
@@ -55,7 +54,7 @@ export default function App() {
             <Route exact path="/">
               {
                 token
-                  ? <Redirect to="/ListPage"/>
+                  ? <Redirect to="/board-games"/>
                   : <AuthPage setEmail={setEmail} setToken={setToken}/>
               }
               {/* if there is a user, redirect to the board games list. Otherwise, render the auth page. Note that the AuthPage will need a function called setUser that can set the user state in App.js */}
@@ -63,24 +62,24 @@ export default function App() {
             <Route exact path="/board-games">
               {
                 token
-                  ? <Redirect to="ListPage"/>
-                  : <AuthPage setEmail={setEmail} setToken={setToken}/>
+                  ? <ListPage />
+                  : <Redirect to='/'/>
               }
               {/* if there is a user, render the board games list. Otherwise, redirect to the home route/auth page */}
             </Route>
             <Route exact path="/board-games/:id">
               {
                 token
-                  ? <Redirect to="/board-games/:id"/>
-                  : <AuthPage setEmail={setEmail} setToken={setToken}/>
+                  ? <DetailPage/>
+                  : <Redirect to="/"/>
               }
               {/* if there is a user, render the detail page. Otherwise, redirect to the home route/auth page */}
             </Route>
             <Route exact path="/create">
               {
                 token
-                  ? <Redirect to="/create"/>
-                  : <AuthPage setEmail={setEmail} setToken={setToken}/>
+                  ? <CreatePage/>
+                  : <Redirect to='/'/>
               }
               {/* if there is a user, render the create page. Otherwise, redirect to the home route/auth page */}
             </Route>
