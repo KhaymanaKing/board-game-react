@@ -42,6 +42,7 @@ export default function App() {
     <Router>
       <div className='App'>
         <header>
+          <h1>Currently Logged in as {email}</h1>
           <nav>
             <Link to="/">Board Games</Link>
             <Link to="/create">Create</Link>

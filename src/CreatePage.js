@@ -23,7 +23,6 @@ export default function CreatePage() {
   async function handleSubmit(e) {
     e.preventDefault();
     await createGame(gameForm);
-    console.log(gameForm);
     // create a game
     history.push('/board-games');
     // use history.push to send the user to the list page
