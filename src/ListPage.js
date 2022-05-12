@@ -17,7 +17,7 @@ export default function ListPage() {
   return (
     <div className='list games'>
       {
-        games.map((game, i) => <Game key={game.id} {...game}/>)
+        games.map((game) => <Game key={game.name} game={game}/>)
       }
       {/* map through the games in state and render Game components */}
     </div>

@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getGameById } from './services/fetch-utils';
 
 export default function DetailPage() {
   const [game, setGame] = useState({});
-  const match = useRouteMatch('/board-games/:id');
+  const { id } = useParams();
   // on mount, fetch and set in state the correct board game for this id (the id can be found in match.params using the correct react-router hook)
 
   useEffect(() => {
     async function load(){
-      const game = await getGameById(match);
+      const game = await getGameById(id);
       setGame(game);
     }
     load();
-  }, [match]);
+  }, [id]);
   return (
     <div className='detail'>
       <h1>{game.title}</h1>

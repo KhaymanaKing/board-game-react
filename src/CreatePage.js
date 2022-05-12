@@ -9,8 +9,8 @@ export default function CreatePage() {
     genre: '',
     designer: '',
     description: '',
-    minPlayers: '',
-    maxPlayers: ''
+    min_players: 0,
+    max_players: 0
   });
   // here's the state you'll need:
     // title;
@@ -23,8 +23,9 @@ export default function CreatePage() {
   async function handleSubmit(e) {
     e.preventDefault();
     await createGame(gameForm);
+    console.log(gameForm);
     // create a game
-    history.push(gameForm);
+    history.push('/board-games');
     // use history.push to send the user to the list page
   }
 
@@ -70,7 +71,7 @@ export default function CreatePage() {
           {/* on change, set the min players in state */}
           <input required name='min_players' onChange={e => setGameForm ({ 
             ...gameForm,
-            minPlayers: e.target.value
+            min_players: e.target.value
           })}/>
         </label>
         <label>
@@ -78,7 +79,7 @@ export default function CreatePage() {
           {/* on change, set the max players in state */}
           <input required name='max_players' onChange={e => setGameForm ({ 
             ...gameForm,
-            maxPlayers: e.target.value
+            max_players: e.target.value
 
           })}/>
         </label>

@@ -29,7 +29,7 @@ export async function createGame(game){
   const response = await client
     .from('board_games')
     .insert([game]);
-
+  console.log(response);
   return checkError(response);
 }
 
